@@ -1,0 +1,95 @@
+.card {
+    border-radius: 12px !important;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(212, 212, 212, 1);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(212, 212, 212, 1);
+    box-shadow: 0px 0px 5px 1px rgba(212, 212, 212, 1);
+}
+#inputRadius,
+.cardColor {
+    background-color: #f2f6f9 !important;
+    color: #707070 !important;
+    border-radius: 8px !important;
+    border: none !important;
+}
+.card-header,
+.card-body,
+.card-footer,
+.img {
+    border-radius: 12px !important;
+}
+
+.border-bottomX {
+    border-radius: 15px;
+    border-bottom-width: 8px;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+}
+.border-rigthX {
+    border-radius: 15px;
+    border-right-width: 8px;
+    border-right-style: solid;
+    border-right-color: white;
+}
+.form-control {
+    background-color: #f2f6f9;
+    color: #707070;
+    border: none !important;
+}
+.btn-blue {
+    background-color: #025ec6;
+    color: white;
+}
+.btn-orange {
+    background-color: #ff6f3b;
+    color: white;
+}
+.btn-green {
+    background-color: #24b13f;
+    color: white;
+}
+.btn-pink {
+    background-color: #ff4d58;
+    color: white;
+}
+button {
+    color: white !important;
+}
+
+.card-purple {
+    color: white;
+    background-color: #858ef3;
+}
+
+.btnNoshadow {
+    background-image: none !important;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.dis-black{
+    background-color: rgb(228, 228, 228) !important;
+}
+.large-2 {
+    height: 560px;
+    overflow-y: scroll;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 467px;
+}
+
+.large-2::-webkit-scrollbar-track {
+    /* border: 1px solid rgb(255, 255, 255); */
+    padding: 2px 0;
+    /* background-color: #ffffff; */
+}
+
+.large-2::-webkit-scrollbar {
+    width: 8px;
+}
+
+.large-2::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #aaaaaa;
+    /* border: 1px solid rgb(255, 255, 255); */
+}

@@ -1,0 +1,543 @@
+<div class="row mt-4 ml-2 mr-1 ">
+  <!-----------------------------------------       card top left      ----------------------------------------->
+  <div class="col">
+    <div class="card  ">
+      <div class="card-body ">
+        <form [formGroup]="formData">
+          <div class="row mr-2 ml-2">
+            <div class="col">
+              <h3><b> Please fill in information
+                </b></h3>
+            </div>
+            <div class="col-3 text-right">
+              <h5 style="color: #6E6E6E;"><b> {{dateNow}}
+                </b></h5>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-4 text-right">ช่องทางทีต้องการให้ติดต่อ
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control shadow-sm p-3  bg-white rounded cardColor"
+                aria-describedby="emailHelp" placeholder="เลขโทรศัพท์ " formControlName="phone">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4">
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control shadow-sm p-3  bg-white rounded cardColor"
+                aria-describedby="emailHelp" placeholder="Line id" formControlName="line">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4">
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control shadow-sm p-3  bg-white rounded cardColor"
+                aria-describedby="emailHelp" placeholder="Email" formControlName="email">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4 text-right">วันทีสะดวกให้ติดต่อ</div>
+            <div class="col-6">
+              <div class="card cardColor shadow-sm p-3  bg-white rounded">
+                <form class="form-inline">
+                  <div class="form-check" *ngFor="let item of dayList; let index = index">
+                    <input class="form-check-input" type="checkbox" value="item.descTh1" (change)="pushDataDay(item)">
+                    <label class="form-check-label" for="defaultCheck{{index}}"
+                      style="width: 6rem;justify-content: left;">
+                      {{item.descTh1}}
+                    </label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4 text-right">เวลาทีสะดวกให้ติดต่อ</div>
+            <div class="col-6">
+              <div class="card cardColor shadow-sm p-3  bg-white rounded cardColor">
+                <form class="form-inline">
+
+                  <div class="form-check" *ngFor="let item of timeList; let index = index">
+                    <input class="form-check-input" (change)="pushDataTime(item)" type="checkbox" value="item.descTh1">
+                    <label class="form-check-label" for="defaultCheck{{index}}"
+                      style="width: 9rem;justify-content: left;">
+                      {{item.descTh1}}
+                    </label>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-4 text-right ">Service ทีชอบใช้</div>
+            <div class="col-6">
+              <div class="card cardColor shadow-sm p-3  bg-white rounded ">
+                <form class="form-inline">
+
+                  <div class="form-check" *ngFor="let item of typeList; let index = index">
+                    <input class="form-check-input" (change)="pushDataService(item)" type="checkbox"
+                      value="item.descTh1" id="typeCheck{{index}}">
+                    <label class="form-check-label" for="defaultCheck{{index}}"
+                      style="width: 5rem;justify-content: left;">
+                      {{item.descTh1}}
+                    </label>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row mt-2">
+            <div class="col-4 text-right">
+              หมายเหตุ
+            </div>
+            <div class="col-6">
+              <textarea formControlName="remark"
+                class="form-control shadow-sm p-3  bg-white rounded cardColor"></textarea>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-4"></div>
+            <div class="col" style="padding-left: 0;">
+              <form class="form-inline ">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio1" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio1" value="not_answer">
+                  <label class="form-check-label" for="inlineRadio1">ไม่รับสาย</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio2" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio2" value="busy">
+                  <label class="form-check-label" for="inlineRadio2">สายไม่ว่าง </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio3" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio3" value="not_have_number">
+                  <label class="form-check-label" for="inlineRadio3">หมายเลขไม่มีในระบบ </label>
+                </div>
+              </form>
+
+
+            </div>
+
+          </div>
+
+          <div class="row mt-1">
+            <!-- <div class="col-0 text-right">
+
+          </div> -->
+            <div class="col text-center">
+
+              <button class="btn btn-blue btn-lg" (click)="clickButton01()" [disabled]="!checkButton01">
+                <img style="color: #fff;" width=" 25px" height="25px" src="./assets/icons/user-minus.svg">
+              </button>
+              <button class="btn btn-blue btn-lg" (click)="clickButton02()" [disabled]="!checkButton02">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/user-x.svg">
+              </button>
+              <button *ngIf="isShowTimeStart" class="btn btn-orange btn-lg" (click)="clickButton03()"
+                [disabled]="!checkButton03" style="width: 10rem;">
+                <i class="fa fa-arrow-circle-right" style="font-size: 30px;"></i>
+              </button>
+              <button *ngIf="isShowTime" class="btn btn-orange btn-lg" (click)="clickButton03()"
+                [disabled]="!checkButton03" style="width: 10rem;">
+                <div *ngIf="getElapsedTime() as elapsed" style="margin-bottom: -5px !important;">
+                  <h5 style="color:#ff4400">{{elapsed.hours}} h {{elapsed.minutes}} m {{elapsed.seconds}} s</h5>
+                </div>
+              </button>
+              <button style="color: #fff;" class="btn btn-green btn-lg" (click)="clickButton04()"
+                [disabled]="!checkButton04">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/phone-call.svg">
+              </button>
+              <button type="button" style=" color: #fff;" class="btn btn-pink btn-lg" (click)="clickButton05()"
+                [disabled]="!checkButton05">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/phone-missed.svg">
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card  mt-3 mb-2">
+      <div class="card-body ">
+        <div class="row">
+          <div class="col">
+            <div class="card cardColor shadow-sm p-3  bg-white rounded text-center">
+              <div>
+                <h5>
+                  Work Call toDay
+                </h5>
+              </div>
+              <div>
+                <h4>
+                  {{this.stateCount.daySuccess}}
+                </h4>
+                <div class="border-bottomX mt-1 mb-2"></div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.dayNotAnswer}}
+                    </h4>
+
+                  </div>
+                  <div>
+                    Not Answer
+                  </div>
+                </div>
+                <div class="col-0 border-rigthX"> </div>
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.dayBusy}}
+                    </h4>
+                  </div>
+                  <div>
+                    Busy
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card cardColor shadow-sm p-3  bg-white rounded text-center">
+              <div>
+                <h5>
+                  Work Call toWeek
+                </h5>
+              </div>
+              <div>
+                <h4>
+                  {{this.stateCount.weeksSuccess}}
+                </h4>
+                <div class="border-bottomX mt-1 mb-2"></div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.weeksNotAnswer}}
+                    </h4>
+
+                  </div>
+                  <div>
+                    Not Answer
+                  </div>
+                </div>
+                <div class="col-0 border-rigthX"> </div>
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.weeksBusy}}
+
+
+                    </h4>
+                  </div>
+                  <div>
+                    Busy
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card cardColor shadow-sm p-3  bg-white rounded text-center">
+              <div>
+                <h5>
+                  Work Call toMonth
+                </h5>
+              </div>
+              <div>
+                <h4>
+                  {{this.stateCount.monthSuccess}}
+                </h4>
+                <div class="border-bottomX mt-1 mb-2"></div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.monthNotAnswer}}
+                    </h4>
+
+                  </div>
+                  <div>
+                    Not Answer
+                  </div>
+                </div>
+                <div class="col-0 border-rigthX"> </div>
+                <div class="col">
+                  <div>
+                    <h4>
+                      {{this.stateCount.monthBusy}}
+                    </h4>
+                  </div>
+                  <div>
+                    Busy
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-----------------------------------------       card top right      ----------------------------------------->
+  <div class="col-4 mt-4">
+    <div class="row">
+      <div class="col">
+        <h3><b> On Boarding
+          </b></h3>
+      </div>
+      <div class="col text-right">
+        <h3 style="color: #FF4D58;"><b> OB_001
+          </b></h3>
+      </div>
+    </div>
+
+
+    <div class="card  mt-4">
+      <div class="card-body card-purple">
+        <div class="row">
+          <div class="col-4" *ngIf="playerIdText">
+            <h6>{{categoryCallText}}</h6>
+          </div>
+          <div class="col-8 text-right">
+            <h6 *ngIf="playerIdText">
+              Player ID : {{merchant+playerIdText }}</h6>
+          </div>
+        </div>
+
+
+        <div class="text-right" *ngIf="!playerIdText">
+          <h6>
+            Player ID : ไม่พบรหัสผู้เล่น</h6>
+        </div>
+        <div class="row text-center">
+          <div class="col mt-4 mb-4" *ngIf="phoneText">
+            <h1> {{ phoneText }}</h1>
+          </div>
+          <div class="col mt-4 mb-4" *ngIf="!phoneText">
+            <h1>ไม่พบข้อมูลเบอร์โทรศัพท์</h1>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col" *ngIf="nameText">
+            <h3> {{ nameText }}</h3>
+          </div>
+          <div class="col" *ngIf="!nameText">
+            <h3>___________________</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card mt-4 " style="height: 39rem;">
+      <div class="custom">
+        <div id="front_videos">
+          <div class="large-2">
+            <div class="force-overflow">
+              <div class="card-body ">
+
+                <h4><b>List Call
+                  </b></h4>
+
+                <div data-toggle="modal" data-target="#exampleModal" class="row mt-4" type="button"
+                  *ngFor="let item of OnboadingList;let index = index" (click)="findBYid(item)">
+
+                  <div class="col-3 text-center">
+                    <img class="img" src="./assets/img/img2.jpg" width="80px" height="80px">
+                  </div>
+                  <div class="col-6">
+                    <h5>Player ID {{item.merchant+item.idPlayer}}
+                    </h5>
+                    {{item.name}}
+                    <br>
+                    {{item.countTime}} นาที
+                  </div>
+                  <div class="col mt-4 ml-4">
+                    <button class="btn btnNoshadow">
+
+                      <i class="fa fa-chevron-circle-right " aria-hidden="true"
+                        style="font-size: x-large;color: #FAC379;"></i>
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<modal-success #successModal>
+</modal-success>
+<!-- errorModal -->
+<modal-error #errorModal>
+</modal-error>
+
+
+<modal-custom #searchCutomerModel header="Info">
+  <div body class="mb-4 mr-2">
+    <div class="row mr-2 ml-2 mb-2">
+      <div class="col">
+        <div class="col">
+          <h4><b>Player ID. {{this.idPlayer}}
+            </b></h4>
+        </div>
+      </div>
+      <div class="col-3 text-right ">
+        <div class="row">
+          <div class="col">
+            <h5 style="color: #6E6E6E;"><b> {{this.dateOfBirth}}
+              </b></h5>
+          </div>
+          <div class="col-0 mr-2"> <i class="fa fa-calendar" aria-hidden="true"
+              style="font-size: 30px;color:  #6E6E6E;"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="row mt-4">
+          <div class="col-4 text-right">ชื่อ
+          </div>
+          <div class="col-6">
+            <input type="email" class="form-control shadow-sm p-3  bg-white rounded dis-black"
+              aria-describedby="emailHelp" placeholder="เลขโทรศัพท์ " value="{{namePlayer}}" disabled>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4 text-right">หมายเลข
+          </div>
+          <div class="col-6">
+            <input type="email" class="form-control shadow-sm p-3  bg-white rounded dis-black"
+              aria-describedby="emailHelp" placeholder="เลขโทรศัพท์ " value="{{phoneModal}}" disabled>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4 text-right">
+            ไอดีไลน์
+          </div>
+          <div class="col-6">
+            <input type="email" class="form-control shadow-sm p-3  bg-white rounded dis-black"
+              aria-describedby="emailHelp" placeholder="Line id" value="{{lineModal}}" disabled>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-4 text-right">
+            อีเมล
+          </div>
+          <div class="col-6">
+            <input type="email" class="form-control shadow-sm p-3  bg-white rounded dis-black"
+              aria-describedby="emailHelp" placeholder="Email" value="{{emailModal}}" disabled>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row mt-2" *ngIf="formData.value.listDay">
+          <div class="col-4 text-right">วันทีสะดวกให้ติดต่อ</div>
+          <div class="col-6">
+            <div class="card cardColor shadow-sm p-3  bg-white rounded dis-black">
+              <form class="form-inline">
+                <div class="form-check" *ngFor="let item of formData.value.listDay; let index = index">
+                  <input disabled class="form-check-input" type="checkbox" checked value="item">
+                  <label class="form-check-label" for="defaultCheck{{index}}"
+                    style="width: 6rem;justify-content: left;">
+                    {{item}}
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row mt-2" *ngIf="formData.value.listTime">
+          <div class="col-4 text-right">เวลาทีสะดวกให้ติดต่อ</div>
+          <div class="col-6">
+
+            <div class="card cardColor shadow-sm p-3  bg-white rounded dis-black">
+              <form class="form-inline">
+
+                <div class="form-check" *ngFor="let item of formData.value.listTime; let index = index">
+                  <input disabled class="form-check-input" type="checkbox" checked value="item">
+                  <label class="form-check-label" for="defaultCheck{{index}}"
+                    style="width: 9rem;justify-content: left;">
+                    {{item}}
+                  </label>
+                </div>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row mt-2" *ngIf="formData.value.listService">
+          <div class="col-4 text-right">เวลาทีสะดวกให้ติดต่อ</div>
+          <div class="col-6">
+
+            <div class="card cardColor shadow-sm p-3  bg-white rounded dis-black">
+              <form class="form-inline">
+
+                <div class="form-check" *ngFor="let item of formData.value.listService; let index = index">
+                  <input disabled class="form-check-input" type="checkbox" checked value="item">
+                  <label class="form-check-label" for="defaultCheck{{index}}"
+                    style="width: 6rem;justify-content: left;">
+                    {{item}}
+                  </label>
+                </div>
+
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col-4 text-right">
+        หมายเหตุ
+      </div>
+      <div class="col-6">
+        <textarea class="form-control shadow-sm p-3  bg-white rounded dis-black" style="height: 8rem;"
+          disabled>{{this.remarkPlayer}}</textarea>
+
+
+      </div>
+    </div>
+
+  </div>
+</modal-custom>

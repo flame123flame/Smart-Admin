@@ -1,0 +1,32 @@
+<div class="row mt-4 ml-2 mr-1">
+  <div class="col-3">
+    <button type="button" class="btn btn-secondary btn-xl" (click)="ChaneColor('1')">ตั้งค่าผู้เข้าใช้งาน</button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-secondary btn-lg" (click)="ChaneColor('2')"
+      style="width: 340px;">ตั้งค่าสิทธิ์การใช้งาน</button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-secondary btn-lg" (click)="ChaneColor('3')"
+      style="width: 340px;">ตั้งค่ารายการข้อมูล LOV</button>
+  </div>
+  <div class="col-3">
+    <button type="button" class="btn btn-secondary btn-lg" (click)="ChaneColor('4')" style="width: 340px;">ตั้งค่ารายการ
+      Constant</button>
+  </div>
+</div>
+<div class="tab-content">
+  <div *ngIf="tabIdx == 1">
+    <app-user></app-user>
+  </div>
+  <div *ngIf="tabIdx == 2">
+    <app-role></app-role>
+  </div>
+  <div *ngIf="tabIdx == 3">
+    <app-listofvalue></app-listofvalue>
+  </div>
+  <div *ngIf="tabIdx == 4">
+    <app-system-constant></app-system-constant>
+  </div>
+
+</div>

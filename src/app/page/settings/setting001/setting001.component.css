@@ -1,0 +1,22 @@
+a.head-card:hover {
+  color: #838789;
+}
+a.head-card:hover .card {
+  /* background-color:#0496da !important; */
+  background-color: #ccc7c7b9;
+  /* border: 1px solid #8ec7e4; */
+}
+
+.btn-xl {
+  padding: 38px 100px;
+  font-size: 20px;
+  font-weight: 50px;
+  border-radius: 12px;
+}
+
+.btn-lg {
+  padding: 38px 60px;
+  font-size: 20px;
+  font-weight: 50px;
+  border-radius: 12px;
+}

@@ -1,0 +1,241 @@
+<div class="wrapper">
+  <nav id="sidebar" class="shadow " *ngIf="checkrouting">
+    <div class="sidebar-header text-center mt-5">
+      <img src="assets/img/username.jpg" style="width: 150px;border-radius: 10px !important;" class="img-thumbnail">
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <h4>{{ this.user.fullName }} </h4>
+      </div>
+    </div>
+
+    <div class="row mt-3 mb-5">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="card uxcard01">
+          <div class="mt-2 ml-3" *ngIf="getElapsedTime() as elapsed">
+            <label style="font-size: 16px;"><b>Time For Work</b></label>
+            <p style="font-size: 15px;">{{timer}} Hr</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-1"></div>
+    </div>
+
+    <div class="row mt-3 mb-5">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="card" style="background-color: #F3F7FA;height: 23rem;  border: none !important;">
+          <br> <br>
+          <!-- <div class="card menucard ml-4 mt-2">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/home" class="head-card" (click)="ChaneColor('0')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa-home fa-2x" [ngStyle]="{'color': colorMenu01}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu01}">Home</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="card menucard ml-4" *ngIf="user.authorities[this.role.ONBOARDING]">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/OnBoarding/OnBoarding001/" class="head-card" (click)="ChaneColor('1')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa fa-phone fa-2x" [ngStyle]="{'color': colorMenu02}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu02}">Onboarding</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card menucard ml-4 " *ngIf="user.authorities[this.role.INCIDENT_001]">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/Incident/Incident001/" class="head-card" (click)="ChaneColor('2')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa-volume-control-phone fa-flip-horizontal  fa-2x"
+                              [ngStyle]="{'color': colorMenu03}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu03}">Incident-In</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card menucard ml-4 " *ngIf="user.authorities[this.role.INCIDENT_002]">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/Incident/Incident002/" class="head-card" (click)="ChaneColor('3')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa-volume-control-phone  fa-2x" [ngStyle]="{'color': colorMenu04}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu04}">Incident-Out</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="card menucard ml-4 " *ngIf="user.authorities[this.role.UPLOAD]">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/Upload/Upload001/" class="head-card" (click)="ChaneColor('4')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa-upload  fa-2x" [ngStyle]="{'color': colorMenu05}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu05}">Upload</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card menucard ml-4" *ngIf="user.authorities[this.role.SETTING]">
+            <div class="row">
+              <div class="col-11">
+                <a href="#test" routerLink="/settings/setting001" class="head-card" (click)="ChaneColor('5')">
+                  <div class="card" style=" border: none !important;  background-color: #F3F7FA;">
+                    <div class="row">
+                      <div class="col text-center" style="margin-top: 8px; margin-bottom: 6px;">
+                        <div class="row">
+                          <div class="col-3 ">
+                            <i class="fa fa fa-cog  fa-2x" [ngStyle]="{'color': colorMenu06}"></i>
+                          </div>
+                          <div class="col">
+                            <div class="row">
+                              <span class="caret mr-4" [ngStyle]="{'color': colorMenu06}">Setting</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="mt-auto btn btn-secondary btn-lg" routerLink="/" (click)="logout()">Sign
+            Out</button>
+
+          <div class="mb-4">
+
+          </div>
+
+
+
+          <!-- <div class="row mt-5">
+            <div class="col-3"></div>
+            <div class="col-7">
+              <a href="#" style="color: #707070;" class="btn  btn-ligh btn-lg active" role="button" aria-pressed="true">
+                <i style="color: #707070;" class="fa fa-sign-out fa-lg" aria-hidden="true"></i>
+                Sign Out</a>
+            </div>
+            <div class="col-2"></div>
+          </div> -->
+        </div>
+
+
+      </div>
+    </div>
+
+  </nav>
+
+  <div id="content">
+
+    <div class="container-fluid">
+      <!-- alert success -->
+      <div class="alert alert-success alert-dismissible fade show" style="display: none" id="alert-success">
+        <a class="close" onclick="$('#alert-success').hide()">×</a>
+        <strong>Warning!</strong> Best check yo self, you're not looking too good.
+      </div>
+      <!-- alert danger -->
+      <div class="alert alert-danger alert-dismissible fade show" style="display: none" id="alert-danger">
+        <a class="close" onclick="$('#alert-danger').hide()">×</a>
+        <strong>Danger!</strong> fail process.
+      </div>
+      <!-- alert warning -->
+      <div class="alert alert-warning alert-dismissible fade show" style="display: none" id="alert-warning">
+        <a class="close" onclick="$('#alert-warning').hide()">×</a>
+        <strong>Warning!</strong> Warning process.
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+        <div class="pb-4">
+        </div>
+      </div>
+    </div>

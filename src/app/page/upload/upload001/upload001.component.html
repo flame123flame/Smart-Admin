@@ -1,0 +1,125 @@
+<div class="row mt-4 ml-2 mr-1 ">
+  <div class="col-8">
+    <div class="row">
+      <div class="col">
+        <div class="card" id="upload-form">
+          <div class="card-body" style="height: 180px !important;">
+            <div class="row mr-2 ml-2">
+              <div class="col">
+                <h3><b> Please Upload File
+                  </b></h3>
+              </div>
+              <div class="col-3 text-right">
+                <h5 style="color: #6E6E6E;"><b> {{dateNow}}
+                  </b></h5>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-2">
+
+              </div>
+              <div class="col-5">
+                <div class="custom-file">
+                  <input type="file" ref="file" name="file" #inpFileUpload (change)="onChangeUpload($event)"
+                    accept=".xlsx , .xls ,.csv" class="custom-file-input" id="customFile">
+                  <label class="custom-file-label" for="customFile">{{filesName}}</label>
+                </div>
+              </div>
+
+
+
+              <!-- <div class="col text-left">
+                <input type="file" ref="file" name="file" #inpFileUpload (change)="onChangeUpload($event)"
+                  accept=".xlsx , .xls ,.csv" class="form-control form-control-sm " />
+              </div> -->
+
+              <div class="col-4 text-left">
+                <button-excel (click)="uploadExcel()"></button-excel>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <div class="card">
+          <div class="card-body ">
+            <div class="col">
+              <h3><b>File Detail
+                </b></h3>
+            </div>
+            <br>
+            <div class="scrollX">
+              <table id="datatable" class="table table-bordered table-striped table-sm display">
+                <thead>
+                  <tr class="text-center">
+                    <th>id_player</th>
+                    <th>merchant</th>
+                    <th>login</th>
+                    <th>affiliate</th>
+                    <th>name</th>
+                    <th>currency</th>
+                    <th>group_player</th>
+                    <th>status</th>
+                    <th>phone</th>
+                    <th>email</th>
+                    <th>line</th>
+                    <th>error_count</th>
+                    <th>register_info</th>
+                    <th>last_login_info</th>
+                    <th>date_of_birth</th>
+                  </tr>
+                </thead>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card">
+      <div class="custom" style="height: 55rem !important;">
+        <div id="front_videos">
+          <div class="large-2">
+            <div class="force-overflow">
+              <div class="card-body">
+                <div class="row mr-2 ml-2">
+                  <div class="col">
+                    <h3><b> File List
+                      </b></h3>
+                  </div>
+                </div>
+                <div type="button" (click)="getExcelListClick(item.id)" class="row mt-4 ml-2"
+                  *ngFor="let item of excelList;let index = index ">
+                  <div class="col text-center" style="max-width:  100px;">
+                    <img class="img" src="./assets/img/90760.jpg" width="80px" height="80px">
+                  </div>
+                  <div class="col">
+                    <label><b>Name File :</b> {{item.fileName}}
+                    </label>
+                    <label><b>Date Upload :</b> {{item.uploadDate | dateString }}
+                    </label>
+                    <label><b>Member count :</b> {{item.memberCount}} คน
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<modal-success #successModal>
+</modal-success>
+<!-- errorModal -->
+<modal-error #errorModal>
+</modal-error>

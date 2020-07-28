@@ -1,0 +1,99 @@
+<ng-template #modalTou>
+  <div class="modal-header alert-primary">
+    <p>{{header}}</p>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onClick('close')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-12"><b>ค่า KW</b></div>
+      </div>
+      <div class="form-group row mt-1">
+        <label class="col-sm-2 col-form-label">1.6.1</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kw161" value="" [dot]="true"
+            [(ngModel)]="data.kw161">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">1.6.2</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kw162" value="" [dot]="true"
+            [(ngModel)]="data.kw162">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">1.6.3</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kw163" value="" [dot]="true"
+            [(ngModel)]="data.kw163">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class=" row ">
+        <div class="col-sm-12"><b>ค่า KWH</b></div>
+      </div>
+      <div class="form-group row mt-1">
+        <label class="col-sm-2 col-form-label">1.8.0</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kwh180" value="" [dot]="true"
+            [(ngModel)]="data.kwh180">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">1.8.1</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kwh181" value="" [dot]="true"
+            [(ngModel)]="data.kwh181">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">1.8.2</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kwh182" value="" [dot]="true"
+            [(ngModel)]="data.kwh182">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">1.8.3</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kwh183" value="" [dot]="true"
+            [(ngModel)]="data.kwh183">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class=" row ">
+        <div class="col-sm-12"><b>ค่า KVAR</b></div>
+      </div>
+      <div class="row mt-1">
+        <label class="col-sm-2 col-form-label">3.6.1</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kvar361" value="" [dot]="true"
+            [(ngModel)]="data.kvar361">
+        </div>
+      </div>
+      <div class=" row">
+        <label class="col-sm-2 col-form-label">3.6.2</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kvar362" value="" [dot]="true"
+            [(ngModel)]="data.kvar362">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">3.6.3</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control form-control-sm" numberOnly name="kvar363" value="" [dot]="true"
+            [(ngModel)]="data.kvar363">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-right">
+    <button-save (click)="onClickSave()"></button-save>
+    <button-close (click)="onClick('close')"></button-close>
+  </div>
+</ng-template>

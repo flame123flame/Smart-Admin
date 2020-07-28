@@ -1,0 +1,208 @@
+<div class="row mt-4 ml-2 mr-1 ">
+  <!-----------------------------------------       card top left      ----------------------------------------->
+  <div class="col">
+    <div class="card  ">
+      <div class="card-body " style="min-height: 890px;">
+        <form [formGroup]="formSave">
+          <div class="row mr-2 ml-2">
+            <div class="col">
+              <h3><b> Please fill in information
+                </b></h3>
+            </div>
+            <div class="col-3 text-right">
+              <h5 style="color: #6E6E6E;"><b> {{dateNow}}
+                </b></h5>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-3 text-right">ช่องทางการให้ติดต่อกลับ
+            </div>
+            <div class="col-6">
+              <input type="email" class="form-control shadow-sm p-3   rounded " id="inputRadius"
+                aria-describedby="emailHelp" placeholder="เลขโทรศัพท์" [value]="formSave.value.phoneNoCallBack" disabled
+                style="background-color: rgb(228, 228, 228) !important;">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-3 text-right">ข้อมูลหมายเหตุ
+            </div>
+            <div class="col-6">
+              <textarea class="form-control shadow-sm p-3  bg-white rounded" placeholder="หมายเหตุ" disabled
+                style="background-color: rgb(228, 228, 228) !important;min-height: 10rem">{{this.formSave.value.remark}}</textarea>
+            </div>
+          </div>
+          <div *ngIf="formSave.value.problme">
+            <div *ngFor="let item of formSave.value.problme;let index = index">
+              <div class="row mt-2">
+                <div class="col-3 text-right">ปัญหาที่ {{index+1}}
+                </div>
+                <div class="col-6">
+                  <input type="email" class="form-control shadow-sm p-3   rounded " id="inputRadius"
+                    aria-describedby="emailHelp" placeholder="เลขโทรศัพท์" [value]="item" disabled
+                    style="background-color: rgb(228, 228, 228) !important;">
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-3 text-right">
+                  วิธีการแก้ปัญหาที่ {{index+1}}
+                </div>
+                <div class="col-6">
+                  <textarea formControlName="remarkProblem" class="form-control shadow-sm p-3  bg-white rounded"
+                    id="inputRadius" style="min-height: 10rem;" (ngModelChange)="setText($event,index)"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row mt-4">
+            <div class="col-4" style="padding-right: 0;"></div>
+            <div class="col" style="margin-left: -15px;">
+              <form class="form-inline ">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio1" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio1" value="not_answer">
+                  <label class="form-check-label" for="inlineRadio1">ไม่รับสาย</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio2" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio2" value="busy">
+                  <label class="form-check-label" for="inlineRadio2">สายไม่ว่าง </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" [checked]="checkRadio3" [disabled]="!checkButton05"
+                    (change)="checkCall($event)" name="inlineRadioOptions" id="inlineRadio3" value="not_have_number">
+                  <label class="form-check-label" for="inlineRadio3">หมายเลขไม่มีในระบบ </label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col text-center">
+              <button class="btn btn-blue btn-lg" (click)="clickButton01()" [disabled]="!checkButton01">
+                <img style="color: #fff;" width=" 25px" height="25px" src="./assets/icons/user-minus.svg"></button>
+              <button class="btn btn-blue btn-lg" (click)="clickButton02()" [disabled]="!checkButton02">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/user-x.svg">
+              </button>
+              <button class="btn btn-orange btn-lg" (click)="clickButton03()" [disabled]="!checkButton03"
+                style="width: 10rem;">
+                <i class="fa fa-arrow-circle-right" style="font-size: 30px;"></i>
+              </button>
+              <button class="btn btn-green btn-lg" (click)="clickButton04()" [disabled]="!checkButton04">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/phone-call.svg">
+              </button>
+              <button class="btn btn-pink btn-lg" (click)="clickButton05()" [disabled]="!checkButton05">
+                <img class="" width=" 25px" height="25px" src="./assets/icons/phone-missed.svg">
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-----------------------------------------       card top right      ----------------------------------------->
+  <div class="col-4 mt-4">
+    <div class="row">
+      <div class="col">
+        <h3><b> Incident
+          </b></h3>
+      </div>
+      <div class="col text-right">
+        <h3 style="color: #FF4D58;"><b> INC_002
+          </b></h3>
+      </div>
+    </div>
+    <div class="card  mt-4">
+      <div class="card-body card-purple">
+        <div class="row">
+          <div class="col-4" *ngIf="playerIdText">
+            <h6>{{categoryCallText}}</h6>
+          </div>
+          <div class="col-8 text-right">
+            <h6 *ngIf="playerIdText">
+              Player ID : {{   this.formSave.value.merchant+playerIdText }}</h6>
+          </div>
+        </div>
+        <div class="text-right" *ngIf="!playerIdText">
+          <h6>
+            Player ID : ไม่พบรหัสผู้เล่น</h6>
+        </div>
+        <div class="row text-center">
+          <div class="col mt-4 mb-4" *ngIf="phoneText">
+            <h1> {{ phoneText }}</h1>
+          </div>
+          <div class="col mt-4 mb-4" *ngIf="!phoneText">
+            <h1>ไม่พบข้อมูลเบอร์โทรศัพท์</h1>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col" *ngIf="nameText">
+            <h3> {{ nameText }}</h3>
+          </div>
+          <div class="col" *ngIf="!nameText">
+            <h3>___________________</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-4 " style="height: 35rem;">
+      <div class="custom">
+        <div id="front_videos">
+          <div class="large-2">
+            <div class="force-overflow">
+              <div class="card-body ">
+                <h4><b>Solve Problem
+                  </b></h4>
+                <div class="row mt-4" *ngFor="let item of IncidentList;let index = index">
+                  <div class="col text-center" style="max-width:  100px;">
+                    <img class="img" src="./assets/img/img2.jpg" width="80px" height="80px">
+                  </div>
+                  <div class="col">
+
+                    <div class="card shadow-none bg-light rounded" style="border: none !important;">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-5 text-right">
+                            <label><b>Ref No :</b></label>
+                          </div>
+                          <div class="col-7 text-left">
+                            <label>{{item.referenceNo}}</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-5 text-right">
+                            <label><b>ปัญหา :</b></label>
+                          </div>
+                          <div class="col-7 text-left">
+                            <label>{{item.text}}</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-5 text-right">
+                            <label><b>การแก้ปัญหา :</b></label>
+                          </div>
+                          <div class="col-7 text-left">
+                            <label>{{item.remark}}</label>
+                          </div>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<modal-success #successModal>
+</modal-success>
+<!-- errorModal -->
+<modal-error #errorModal>
+</modal-error>

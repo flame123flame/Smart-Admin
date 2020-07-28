@@ -1,0 +1,171 @@
+<div class="row mt-5">
+  <div class="col-2 text-left">
+    <b> GL Management</b>
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>GL Account :</p>
+  </div>
+  <div class="col-4">
+    <select class="form-control form-control-sm" [(ngModel)]="data.glAccount"
+      (change)="callGlAccount($event.target.value)">
+      <option *ngFor="let item of glAccountList" value="{{item.value}}">{{item.value}} - {{item.label}}</option>
+    </select>
+  </div>
+</div>
+<!-- <div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>Tax Code :</p>
+  </div>
+  <div class="col-4">
+    <input
+      type="text"
+      class="form-control form-control-sm"
+      [(ngModel)]="data.taxCode"
+    />
+  </div>
+</div> -->
+<!-- <div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>Withholding Tax :</p>
+  </div>
+  <div class="col-4">
+    <select class="form-control form-control-sm" [(ngModel)]="data.withholdingCode" (change)="callLov($event)">
+      <option *ngFor="let item of lovList" value="{{item.withholdingCode}}">{{item.withholdingCode}}-{{item.withholdingType}}</option>
+    </select>
+  </div>
+</div> -->
+<!-- <div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>Special GL :</p>
+  </div>
+  <div class="col-4">
+    <input
+      type="text"
+      class="form-control form-control-sm"
+      [(ngModel)]="data.specialGl"
+    />
+  </div>
+</div> -->
+<div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>PA ค่าบริการหลัก :</p>
+  </div>
+  <div class="col-4">
+    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.paMain" />
+  </div>
+</div>
+<div class="row mt-2">
+  <div class="col-2 text-right ">
+    <p>PA ค่าภาระและบริการ :</p>
+  </div>
+  <div class="col-4">
+    <input type="text" class="form-control form-control-sm" [(ngModel)]="data.paService" />
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div class="col-8 text-right ">
+    <table class="table table-bordered">
+      <tr>
+        <th scope="col" class="text-center">#</th>
+        <th scope="col" class="text-center">Withholding Tax</th>
+        <th scope="col" class="text-center">Tax Code</th>
+        <th scope="col" class="text-center">Special GL</th>
+        <th scope="col" class="text-center">Text</th>
+      </tr>
+      <tbody>
+        <tr>
+          <th scope="row">ขอใช้</th>
+               <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[0].withholdingCode"
+              (change)="callTextCode01A1($event)">
+
+              <option *ngFor="let item of lovListA1" value="{{item.withholdingCode}}">
+                <b *ngIf="item.withholdingCode == 'N/A'">N/A</b>
+                <b *ngIf="item.withholdingCode != 'N/A'">
+                  {{item.withholdingCodeDes}}-{{item.withholdingTypeDes}}
+                </b>
+              </option>
+            </select>
+          </td>
+
+
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[0].taxCode"
+              (change)="callTextCode01($event)">
+              <option *ngFor="let item of textCodeList" value="{{item.taxCode}}">{{item.taxCode}}</option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="glAction[0].specialGl" class="form-control form-control-sm" type="text"
+              placeholder=""></td>
+          <td><input [(ngModel)]="glAction[0].text" class="form-control form-control-sm" type="text" placeholder="">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">ยกเลิก</th>
+          <td> <select class="form-control form-control-sm" disabled>
+              <option value="N/A">N/A</option>
+            </select>
+          </td>
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[1].taxCode"
+              (change)="callTextCode02($event)">
+              <option *ngFor="let item of textCodeList" value="{{item.taxCode}}">
+                {{item.taxCode}}
+              </option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="glAction[1].specialGl" class="form-control form-control-sm" type="text"
+              placeholder=""></td>
+          <td><input [(ngModel)]="glAction[1].text" class="form-control form-control-sm" type="text" placeholder="">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">รายเดือน</th>        
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[2].withholdingCode"
+              (change)="callTextCode01R1($event)">
+              <option *ngFor="let item of lovListR1" value="{{item.withholdingCode}}">
+                <b *ngIf="item.withholdingCode == 'N/A'">N/A</b>
+                <b *ngIf="item.withholdingCode != 'N/A'">
+                  {{item.withholdingCodeDes}}-{{item.withholdingTypeDes}}
+                </b>             
+              </option>
+            </select>
+          </td>
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[2].taxCode"
+              (change)="callTextCode03($event)">
+             
+              <option *ngFor="let item of textCodeList" value="{{item.taxCode}}">{{item.taxCode}}</option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="glAction[2].specialGl" class="form-control form-control-sm" type="text"
+              placeholder=""></td>
+          <td><input [(ngModel)]="glAction[2].text" class="form-control form-control-sm" type="text" placeholder="">
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">เงินสด</th>      
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[3].withholdingCode"
+              (change)="callTextCode01A2($event)">
+              <option *ngFor="let item of lovListA1" value="{{item.withholdingCode}}">
+                <b *ngIf="item.withholdingCode == 'N/A'">N/A</b>
+                <b *ngIf="item.withholdingCode != 'N/A'">
+                  {{item.withholdingCodeDes}}-{{item.withholdingTypeDes}}
+                </b>       
+              </option>
+            </select>
+          </td>
+
+          <td> <select class="form-control form-control-sm" [(ngModel)]="glAction[3].taxCode"
+              (change)="callTextCode04($event)">         
+              <option *ngFor="let item of textCodeList" value="{{item.taxCode}}">{{item.taxCode}}</option>
+            </select>
+          </td>
+          <td><input [(ngModel)]="glAction[3].specialGl" class="form-control form-control-sm" type="text"
+              placeholder=""></td>
+          <td><input [(ngModel)]="glAction[3].text" class="form-control form-control-sm" type="text" placeholder="">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

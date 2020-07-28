@@ -1,0 +1,57 @@
+<ng-template #modalUpload>
+  <div class="modal-header ">
+    <p>จัดการไฟล์</p>
+    <button type="button" class="close pull-right" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group">
+          <form id="upload-form">
+            <div class="text-right">
+              <input id="file" type="file" name="file"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
+              <button-upload (click)="onUpload($event)"></button-upload>
+            </div>
+            <br>
+          </form>
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-bordered table-striped table-sm">
+            <thead class="text-center">
+              <tr>
+                <th class="text-center">ชื่อไฟล์</th>
+                <th class="text-center">นามสกุลไฟล์</th>
+                <th class="text-center">วันที่อัพโหลดไฟล์</th>
+                <th class="text-center">จัดการ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of itemList">
+                <td>{{item.reqFileName}}</td>
+                <td>{{item.reqFileExtension}}</td>
+                <td>{{item.createdDate}}</td>
+                <td class="text-center">
+                  <button class="btn btn-info btn-sm" type="button" (click)="downloadFile(item.reqFileId)">
+                    <i class="fa fa-download" aria-hidden="true"></i> ดาวน์โหลดไฟล์
+                  </button>
+                  <button class="btn btn-outline-danger btn-sm" (click)="openModal2(item.reqFileId)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i> ลบ
+                  </button>`
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-right">
+    <button-close (click)="closeModal()"></button-close>
+  </div>
+</ng-template>
+<modal-success #successModal [body]="'บันทึกรายการสำเร็จ'"></modal-success>
+<modal-error #errorModal></modal-error>
+<modal-confirm #deleteFileModal (onConfirm)="onClickDeleteFile()">
+</modal-confirm>
